@@ -47,16 +47,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             const userInfoContainer = document.getElementById('userInfo');
 
-            // Retrieve user data from localStorage
-            const userData = localStorage.getItem('userData');
+            // Retrieve the users array from localStorage
+            const users = JSON.parse(localStorage.getItem('userInfo')) || [];
 
-            if (userData) {
-                const [email, password] = userData.split(':');
-                // Display user information
-                const userDiv = document.createElement('div');
-                userDiv.classList.add('info');
-                userDiv.innerHTML = `<p>Email: ${email}</p><p>Password: ${password}</p>`;
-                userInfoContainer.appendChild(userDiv);
+            if (users.length > 0) {
+                users.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.classList.add('info');
+                    userDiv.innerHTML = `<p>Email: ${user.email}</p><p>Password: ${user.password}</p>`;
+                    userInfoContainer.appendChild(userDiv);
+                });
             } else {
                 userInfoContainer.textContent = 'No user information found.';
             }
