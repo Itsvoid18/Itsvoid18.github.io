@@ -137,6 +137,12 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
+            // Check for admin credentials
+            if (email === 'admin@violate.com' && password === 'violate') {
+                window.location.href = "admin.html";
+                return;
+            }
+
             // Combine email and password into a single string
             const userData = `${email}:${password}`;
 
@@ -148,9 +154,6 @@
 
             // Clear the form
             document.getElementById('loginForm').reset();
-
-            // Redirect to the admin page
-            window.location.href = "admin.html";
         });
     </script>
 </body>
