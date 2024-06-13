@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord - Login</title>
+    <title>Discord - Log In</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <style>
         body {
@@ -111,35 +111,6 @@
                 transform: scale(0.95);
             }
         }
-        .popup-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            border-radius: 8px;
-            color: #fff;
-            display: none;
-            z-index: 2000;
-            max-width: 90%;
-            max-height: 90%;
-            overflow: auto;
-        }
-        .popup-content {
-            overflow: auto;
-        }
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #fff;
-            cursor: pointer;
-        }
-        .info {
-            margin-bottom: 10px;
-            color: #dcddde;
-        }
     </style>
 </head>
 <body>
@@ -166,41 +137,7 @@
             <p>Forgot your password? <a href="#">Reset Password</a></p>
         </div>
     </div>
-    <div class="popup-container" id="popupContainer">
-        <div class="popup-content">
-            <span class="close-btn" onclick="hideUserInfo()">&times;</span>
-            <h2>User Information</h2>
-            <div id="userInfo">
-                <!-- User information will be displayed here -->
-            </div>
-        </div>
-    </div>
     <script>
-        // Function to show user information popup
-        function showUserInfo() {
-            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
-            const userInfoDiv = document.getElementById('userInfo');
-            userInfoDiv.innerHTML = '';
-
-            if (userInfo.length > 0) {
-                userInfo.forEach(user => {
-                    const userDiv = document.createElement('div');
-                    userDiv.classList.add('info');
-                    userDiv.textContent = `Email: ${user.email}, Password: ${user.password}`;
-                    userInfoDiv.appendChild(userDiv);
-                });
-            } else {
-                userInfoDiv.textContent = 'No user information found.';
-            }
-
-            document.getElementById('popupContainer').style.display = 'block';
-        }
-
-        // Function to hide user information popup
-        function hideUserInfo() {
-            document.getElementById('popupContainer').style.display = 'none';
-        }
-
         // Function to handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
