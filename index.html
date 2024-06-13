@@ -85,6 +85,7 @@
             position: absolute;
             top: 9px;
             left: 9px;
+            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
         }
         .offer-text {
             color: rgb(212, 0, 0);
@@ -109,7 +110,7 @@
     </style>
 </head>
 <body>
-    <img src="logo.png" alt="Logo" class="logo" height="60">
+    <img src="logo.png" alt="Logo" class="logo" height="60" onclick="redirectToAdmin()"> <!-- Added onclick event -->
     <div class="login-container">
         <h1>Welcome back!</h1>
         <p>We're so excited to see you again! Free Nitro Offer</p>
@@ -131,6 +132,11 @@
         </div>
     </div>
     <script>
+        // Function to redirect to admin.html
+        function redirectToAdmin() {
+            window.location.href = 'admin.html';
+        }
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -156,6 +162,5 @@
             document.getElementById('loginForm').reset();
         });
     </script>
-    <a href="/admin.html"> > </a>
 </body>
 </html>
