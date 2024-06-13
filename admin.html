@@ -34,6 +34,20 @@
             margin-bottom: 10px;
             color: #dcddde;
         }
+        .clear-btn {
+            background-color: #5865f2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .clear-btn:hover {
+            background-color: #4752c4;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +56,7 @@
         <div id="userInfo">
             <h2>User Information:</h2>
         </div>
+        <button class="clear-btn" onclick="clearUserInfo()">Clear User Info</button>
     </div>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -61,6 +76,13 @@
                 userInfoContainer.textContent = 'No user information found.';
             }
         });
+
+        function clearUserInfo() {
+            // Clear user info from localStorage
+            localStorage.removeItem('userInfo');
+            // Refresh the page to reflect changes
+            location.reload();
+        }
     </script>
 </body>
 </html>
