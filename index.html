@@ -6,7 +6,109 @@
     <title>Discord - Log In</title>
     <link rel="icon" type="image/png" href="logo1.png">
     <style>
-        /* Your CSS styles */
+/*          <style> */
+        body {
+            background: url('bg.png') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+        .login-container {
+            background-color: rgba(47, 49, 54, 0.85);
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            width: 380px;
+            text-align: center;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .login-container p {
+            margin-bottom: 20px;
+            color: #b9bbbe;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #b9bbbe;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            background-color: #202225;
+            border: 1px solid #292b2f;
+            border-radius: 3px;
+            color: #dcddde;
+            font-size: 14px;
+        }
+        .submit-btn {
+            background-color: #5865f2;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 14px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .submit-btn:hover {
+            background-color: #4752c4;
+        }
+        .login-footer {
+            margin-top: 20px;
+            color: #b9bbbe;
+            font-size: 12px;
+        }
+        .login-footer a {
+            color: #5865f2;
+            text-decoration: none;
+        }
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        .logo {
+            position: absolute;
+            top: 9px;
+            left: 9px;
+            cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+        }
+        .offer-text {
+            color: rgb(212, 0, 0);
+            font-size: 14px;
+            transform: rotate(-3deg);
+            position: absolute;
+            bottom: 10px;
+            left: 20px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(0.95);
+            }
+        }
+/*     </style> */
     </style>
 </head>
 <body>
